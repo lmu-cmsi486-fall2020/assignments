@@ -66,18 +66,40 @@ Finally, finish up the exercise by writing a small technical report on everythin
     - Choose your timed operations in a way that illustrates how size and ordering affects performance
 3. Is there a correlation between the ease of implementation and performance? (i.e., are the hardest operations to implement always the slowest ones? vice versa? or is there no relationship at all?)
 
-### Operational Directives/Suggestions
+## Operational Directives/Suggestions
 - Make sure to divide the implementation work relatively evenly within your group. Most groups have four (4) members and you will notice that there are eight (8) total “coding” tasks (three for Netflix, five for your dataset). Thus, letting individual group members “own” around two (2) tasks each will help spread the load. Of course you can all help each other as needed, but let each person take point on two items.
 - Once more, do _not_ commit the original files to the repository—they may be too large for that. Provide links instead. Edit _.gitignore_ to avoid accidental commits.
 - Not everyone’s computer might have enough storage or other capacity—AWS is an option but watch your credits; or, designate someone as the “host” for doing work and find ways to collaborate over a screenshare and (friendly) remote control of a classmate’s screen.
 
 ## How to Turn it In
 Commit everything to GitHub. Reiterating the deliverables, they are:
-- _netflix-practice.md_
-- _about.md_
-- _.gitignore_ (revised from what is already provided)
-- _queries.md_
-- _report.md_
+- [_netflix-practice.md_](#warm-up-to-the-challenge-netflix-practicemd)
+- [_about.md_](#let-there-bedata-aboutmd-gitignore)
+- [_.gitignore_](#let-there-bedata-aboutmd-gitignore) (revised from what is already provided)
+- [_queries.md_](#feel-the-power-queriesmd)
+- Custom [file-processing/querying code](#feel-the-power-queriesmd)
+- [_report.md_](#take-stock-of-your-mini-stack-reportmd)
+
+Review the instructions in the deliverables’ respective sections to see what goes in them.
 
 ## Specific Point Allocations
-(work in progress)
+This assignment is scored according to outcomes _1a_, _1d_, _2b_, _3c_, _3d_, and _4a_ to _4f_ in the [syllabus](https://dondi.lmu.build/fall2020/cmsi486/cmsi486-fall2020-syllabus.pdf). For this particular assignment, graded categories are as follows:
+
+| Category | Points | Outcomes |
+| -------- | -----: | -------- |
+| _netflix-practice.md_ correctly implements the requested operations | 5 points each, 15 points total | _1a_, _2b_, _3c_, _4a_ |
+| _about.md_ | 10 points total | _1a_, _1d_, _4c_ |
+| • Includes link to the dataset’s files | 3 points | |
+| • Describes the dataset and possible applications well | 7 points | |
+| _.gitignore_ correctly prevents accidental commits of dataset files | 5 points | _4a_ |
+| _queries.md_ correctly implements the requested operations | 7 points each, 35 points total | _1d_, _2b_, _3c_, _4a_ |
+| Custom file-processing/querying code works as intended | 10 points each, 20 points total | _1d_, _2b_, _3d_, _4a_ |
+| _report.md_ answers the questions well | 5 points each, 15 points total | _1a_, _4c_ |
+| • Objective data supplied via `time` | deduction if not provided | |
+| Hard-to-maintain or error-prone code | deduction only | _4b_ |
+| Hard-to-read code | deduction only | _4c_ |
+| Version control | deduction only | _4e_ |
+| Punctuality | deduction only | _4f_ |
+| **Total** | **100** |
+
+Note that inability to compile and run any code to begin with will negatively affect other criteria, because if we can’t run your code (or commands), we can’t evaluate related remaining items completely.
