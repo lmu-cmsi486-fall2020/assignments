@@ -8,7 +8,7 @@ And, for a dash of fun (and interaction with classmates), we’ll channel (or dr
 ## Background Reading
 You can derive some inspiration for potential data-centric applications by browsing the datasets available from the [Kaggle](https://www.kaggle.com/datasets) and [Awesome Public Datasets](https://github.com/awesomedata/awesome-public-datasets) collections. The only one that’s off-limits: we’ll be using the [Netflix Prize](https://www.kaggle.com/netflix-inc/netflix-prize-data) dataset as our on-going case study throughout the semester, so pick something that isn’t that one!
 
-Refer to these “super basic” crib sheets in order to get started with SQL and datbase diagramming—of course there are many other sources of SQL and diagramming information on the web, and you are free to look for those if you need more. But these are intended to be good enough for now, so that you don’t feel like you’re going down a database rabbit hole 🐰:
+Refer to these “super basic” crib sheets in order to get started with SQL and database diagramming—of course there are many other sources of SQL and diagramming information on the web, and you are free to look for those if you need more. But these are intended to be good enough for now, so that you don’t feel like you’re going down a database rabbit hole 🐰:
 - [Super Basic Database Diagramming](https://dondi.lmu.build/share/db/super-basic-database-diagramming.pdf)
 - [Super Basic SQL](https://dondi.lmu.build/share/db/super-basic-sql.pdf)
 
