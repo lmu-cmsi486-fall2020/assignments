@@ -4,7 +4,7 @@
 Before diving fully into database systems per se, we make one stopover “under the hood” by looking at data management by working with files alone. The premise here is that all database systems, regardless of model, philosophy, or generation, ultimately store their data in files. Thus, it is of value to explore what it takes to work with files _directly_—in a way, to write the very beginnings of your own database system.
 
 ## Background Reading
-Continue to draw inspiration from the [Kaggle](https://www.kaggle.com/datasets) and [Awesome Public Datasets](https://github.com/awesomedata/awesome-public-datasets) collections for this assignment—and this time, keep a closer eye on datasets that have files which you can actually work with along the lines of this assignment. As before the [Netflix Prize](https://www.kaggle.com/netflix-inc/netflix-prize-data) dataset is used as the case study for the assignment’s accompanying examples—you may not use it for your own submission, but by all means download these files and try out [the given examples](./netflix-prize-example) for yourself.
+Continue to draw inspiration from the [Kaggle](https://www.kaggle.com/datasets) and [Awesome Public Datasets](https://github.com/awesomedata/awesome-public-datasets) collections for this assignment—and this time, keep a closer eye on datasets that have files which you can actually work with along the lines of this assignment. As before the [Netflix Prize](https://www.kaggle.com/netflix-inc/netflix-prize-data) dataset is used as the case study for the assignment’s accompanying examples—you may not use it for your own submission, but by all means download these files and try out [the given examples](./netflix-prize-file-example) for yourself.
 
 Direct assistance for the action items in this assignment can be found (among other places) in:
 * [Finding Things](https://swcarpentry.github.io/shell-novice/07-find/) on the command line
@@ -27,7 +27,7 @@ In Ullman’s [Foundations of Computer Science Chapter 8](http://infolab.stanfor
 For this assignment, give yourselves and your groups a taste of what it would be like to work with data at a file level by taking a stab at performing the database operations described below.
 
 ### Warm Up to the Challenge: _netflix-practice.md_
-Walk through the [Netflix Prize file database mini-stack case study](./netflix-prize-example)—ideally together as a group, so you can help each other through each example—and do a little prep by doing some freeform exploration of that data using the techniques shown therein. Ideally, everyone in the group can download and preprocess the data firsthand; if this is not feasible for some, designate one or more group members to serve as “hosts” for your work, and collaborate around a screenshare with them.
+Walk through the [Netflix Prize file database mini-stack case study](./netflix-prize-file-example)—ideally together as a group, so you can help each other through each example—and do a little prep by doing some freeform exploration of that data using the techniques shown therein. Ideally, everyone in the group can download and preprocess the data firsthand; if this is not feasible for some, designate one or more group members to serve as “hosts” for your work, and collaborate around a screenshare with them.
 
 In a Markdown file on your repository called _netflix-practice.md_, do the following:
 1. Write up two (2) movie queries—things like movies with certain titles or title patterns, movies released on one or more given years, etc. Provide those queries and show their results (or a subset of them, if there are too many to list).
@@ -48,7 +48,7 @@ Whatever you do, do _not_ commit the datasets to GitHub. This is one case where 
 To guarantee that this does not accidentally happen, _edit the `.gitignore` file_ so that it makes your repository ignore the files that comprise your chosen dataset.
 
 ### Feel the Power: _queries.md_
-Once you have the data at your fingertips, it’s time to play database. Seek to implement the following operations. Refer back to the examples in the [netflix-prize-example](./netflix-prize-example) folder as needed. Just remember that _datasets will differ from each other_, so don’t limit yourself exclusively to what you see in the case study. In particular, note that the case study uses Python for custom programming work—this will not necessarily be the best fit for the dataset that you choose.
+Once you have the data at your fingertips, it’s time to play database. Seek to implement the following operations. Refer back to the examples in the [netflix-prize-file-example](./netflix-prize-file-example) folder as needed. Just remember that _datasets will differ from each other_, so don’t limit yourself exclusively to what you see in the case study. In particular, note that the case study uses Python for custom programming work—this will not necessarily be the best fit for the dataset that you choose.
 
 As before, it is also useful to contextualize things by envisioning an application that would use your chosen dataset. Having such an application in mind will help fuel ideas for the specific operations to implement in the following categories. Place query descriptions and commands in a file called _queries.md_ and commit relevant source code directly to the repository (referring to them as needed in _queries.md_):
 
