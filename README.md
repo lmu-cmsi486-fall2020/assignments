@@ -5,7 +5,7 @@ This repository hosts a public copy of the assignment write-ups for this course 
 
 - [Assignment 0914](./fiddle-tutorial.md) Database fiddle tutorial
 - [Assignment 0928](./file-db-mini-stack.md) File database mini-stack
-- **Assignment 1019** Relational database mini-stack
+- [Assignment 1019](./relational-db-mini-stack.md) Relational database mini-stack
 - **Assignment 1102** Document-centric database mini-stack
 - **Assignment 1116** Graph database mini-stack
 - **Assignment 1214** Full database SDK
