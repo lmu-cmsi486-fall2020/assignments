@@ -264,4 +264,54 @@ postgres=# EXPLAIN SELECT DISTINCT title FROM movie, rating WHERE movie.id = rat
 ```
 
 ## Hello DAL-ly
-Work in progress—stay tuned!
+As flexible and powerful as SQL is—or any database definition/manipulation language in general—this isn’t how most people interact with database management systems. Take yourself, for example: you have probably been interacting with databases your whole life, but with a few exceptions, this is probably the first time you’re encountering SQL in depth.
+
+Instead, most database interaction takes place through _applications_—user-facing programs that have a distinct real-world purpose which happen to need a database management system in order to fulfill that purpose. These applications are no different from the programs and apps that you have already written to this point—they just happen to talk to a database as part of their functionality. And, like with all code, they do that by importing some module and library that abstracts these CRUD operations out for them. This part of the software is called the _data access layer_, or DAL for short.
+
+The DAL is just like any other library: it defines a range of functions that interact with a database in whatever ways the application needs. From an application’s perspective, it simply calls functions to create, read, update, or delete information from the database. The DAL’s _implementation_ takes care of the details.
+
+For our case study, we provide the beginnings of a DAL in two versions: one written in Python and another written in Node.js. These can serve both as concrete examples of what a DAL is in the first place as well as potential starting points for writing your own DALs for your own datasets. Both DALs rely on a _general-purpose_ database library which makes the full functionality of the underlying database management system available; the job of the DAL is to _focus_ this functionality so that the application can go straight to accomplishing what it needs.
+
+Of course, these aren’t the only platforms for which you can write DALs, either. If there’s a generalized database library for a language, then you can write a DAL in that language.
+
+### Dawn of the DAL
+It should be noted that the very notion of a distinct, separable/reusable module which isolates data access details from the rest of an application is a key idea in and of itself. In his seminal [“A relational model of data for large shared data banks.”](https://dl.acm.org/doi/10.1145/362384.362685), E. F. Codd notes a need for _data independence_ in applications of the time. In his words, “variety of data representation characteristics which can be changed _without logically impairing some application programs_ is still quite limited”—italics are his. It was in fact the very objective of increasing the independence of an application’s code from the internal details of a data store’s information that serves a key motivating factor behind his proposed relational database model.
+
+Ultimately, the idea of a DAL is orthogonal to the relational database model as well, and we will see this idea integrated into all of our database mini-stacks. Its history is mentioned here not only because it’s the first mini-stack we are encountering but also to point out that sometimes, notions that might seem to be an obvious matter-of-course in the present day could very well have been missing or considered revolutionary in the past, until some particularly insightful yet straightforward-thinking innovator actually realized the need for such a thing and found a way to implement it feasibly.
+
+### A Spectrum of DAL-liances: Relational DAL Implementation Styles
+The relational database model fosters a range of styles when it comes to implementing DALs that target such databases. This range is illustrated in the following table, with some notes on the characteristics that typify certain approaches. Note that relational database libraries may offer any or all of these styles, with possible gradations in between. Feel free to pick the style that suits the task, on a function-by-function basis.
+
+| | Raw/Embedded SQL | Structured/Built/“Fluent” SQL | Object-Relational Mapping (ORM) |
+| --- | --- | --- | --- |
+| _Description_ | SQL statements given as strings, yielding arrays or tuples varying types | SQL statements that are “built” through functions and data structures, yielding either varying arrays or mapped to a predefined data structure | Object definitions and methods that generate SQL automatically, returning instances of those objects |
+| _Programming style_ | Build SQL strings on your own, “send” them through a function, and be ready to parse/interpret the results depending on the kind of query that was sent | Use functions to build an object that represent an SQL operation, “invoke” that object, then parse/interpret the results depending on how the return value was specified | Determine the objects of interest in advance, then call methods/functions on those objects that return instances of those objects—SQL is generated under the hood |
+| _What You Gain…_ | Total flexibility: If you can say it in SQL, you can invoke it | Error avoidance: SQL builder functions are structured in a way that will prevent syntactically malformed SQL | Domain-specificity: Express your data needs in terms of the application’s objects and structures—property names and types are known and many operations (especially joins) are done automatically and intuitively |
+| _…in Exchange For_ | Send any string, you say? Yes—which means you better build a _correct_ one! Plus generic SQL means you get generic results which may require more logic or parsing | If you “think in SQL,” you will have to learn how to translate that into the functions that will generate that SQL | Talking in terms of application objects means that these objects, and how they map to tables, need to be defined up-front (and defined correctly) |
+
+### A Word on Two Words: Configuration and Scope
+Before we dive into the DAL examples, it’s worthwhile to talk through a few technical details that may arise as you advance further into this realm: configuration and scope.
+
+#### Configuration
+A major common element with the examples is that they rely on an _environment variable_, which we’re calling `DB_URL`, to specify how to connect to the underlying database server. This isn’t technically necessary for the sample programs but is a best practice in general—nearly all real-world deployments need to keep this configuration piece separate from the code so that it can be changed easily without requiring a rebuild or recompile. Environment variables (worth looking up if you aren’t familiar with them) are a widely-used mechanism for this because they translate to a broad range of stacks and scenarios, ranging from the command line to so-called “serverless” stacks like the AWS Lambda service. Getting a handle on them, especially on your friendly neighborhood command line, is a very useful and transferrable piece of knowledge.
+
+A very straightforward—if verbose—way to pass environment variables to a program, _for that program call only_, is to supply them as key-value pairs before the command itself. Many command line shells support this; we use it here because it’s very clean, applying only to the program on that line and leaving no side effects:
+
+    DB_URL=postgres://localhost/postgres <rest of command>
+
+As you get more comfortable, you can explore setting that variable for the duration of our session… (_bash_/_zsh_ example shown)
+
+    export DB_URL=postgres://localhost/postgres
+
+…to storing that line in an initialization file (this is command-line shell dependent), so that the variable is always set and would no longer need to be given with every command.
+
+This last approach is very convenient but of course can leave state behind long after you no longer need it. To help with that, command-line shells provide a built-in command, such as `set`, `env`, or `setenv` (depends on the shell you’re using), that lists all currently active environment variables on a given command line session (you’d be surprised how many there are).
+
+#### Scope
+Multitiered/multilayered software architectures introduce new programming entities with more nuanced life cycles than local variables vs. global variables. There are _factories_ that create new objects for your DAL code, in a way that corresponds to current settings; _connections_ that represent active channels with the server; _transactions_ that determine when information is “committed” permanently (or aborted); various _engines_ or _states_ that keep related information together, especially for ORM implementations.
+
+Fully understanding the scopes and life cycles of these objects would be information overload right now, but suffice it to say that it’s good to at least know that such things exist and that using them correctly isn’t always solely a matter of “make it global” or “make it local.” There are layers in between those extremes whose value isn’t fully clear in these small examples, but which grow in prominence as you change architectures—for example, when implementing a DAL for a web service. We’ll seek to touch on these issues (especially transactions) when you’re more acclimated to all of this, but also stay open to learning more about them as you go, including beyond graduation and as new technologies emerge.
+
+This also means that the DAL code given here isn’t necessarily set in stone if the DAL were to be used in other environments beyond single-use command-line programs. Ultimately, the sample code is meant to be a starting point for understanding how these systems work—they seek to _illustrate_ the different aspects of this software stack without necessarily mandating particular ways for implementing them. If you decide to use this code as the basis for other projects, don’t be shocked if some rewriting becomes necessary. The hope is that, even through such rewrites, the roles and interactions of the sample code remain apparent even if the code evolves in its implementation or structure.
+
+As for the DAL examples themselves, you’ll find them in the [python](./python) and [nodejs](./nodejs) directories, with corresponding READMEs for getting them up and running. Enjoy!

@@ -3,3 +3,7 @@ movie_titles.csv
 probe.txt
 qualifying.txt
 ratings.csv
+.idea/
+__pycache__/
+env/
+node_modules/
