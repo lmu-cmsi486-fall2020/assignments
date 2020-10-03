@@ -28,6 +28,7 @@ The [_psql_ section](https://www.postgresql.org/docs/current/app-psql.html) of t
 
 Your language of choice will determine the additional readings. The earlier links for working with files will still apply when implementing the “loader” portion of the assignment. New to the pool of documentation are assorted links to relational database libraries across various languages:
 * [SQLAlchemy](https://www.sqlalchemy.org) is likely your best bet if you want to interact with PostgreSQL (and other relational database management systems) in Python
+* The [“When do I construct a Session, when do I commit it, and when do I close it?” Question+Answer from SQLAlchemy](https://docs.sqlalchemy.org/en/13/orm/session_basics.html#when-do-i-construct-a-session-when-do-i-commit-it-and-when-do-i-close-it) actually provides some excellent big-picture background that applies not only to SQLAlchemy, but also to many other general-purpose database libraries like it
 * [Sequelize](https://sequelize.org/master) is the corresponding library if Node.js is your jam
 * For Java, [JDBC](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html) (Java Database Connectivity) is actually a first-party feature of the language, though ironically the primary-source documentation linked here is actually getting quite long in the tooth (they say so themselves) so you may well find better and more updated sources out there
 
@@ -93,6 +94,8 @@ Since this is a mini-stack, we don’t expect your DAL to be full-featured. You 
 * One (1) domain-appropriate _retrieval_ function that, given some set of arguments, will return corresponding data matching those arguments—you may adapt one of the queries you wrote in [SQL Me This, Caped Crusader](#sql-me-this-caped-crusader-queriesmd) for this—pick some aspect of that query that would make sense as parameters so that the same function can be used for multiple queries of the same type
 * One (1) domain-appropriate “CUD” function (create, update, or delete) that modifies the database’s records, given some set of arguments
 
+A little extra credit will go to groups who implement each function using a opposite styles—one via raw/embedded/built SQL and another via object-relational mapping (ORM).
+
 ### Use the DAL, Luke
 Write one (presumably short) program apiece that calls the retrieval and “CUD” functions, respectively. These programs’ primary jobs would be:
 * Provide help on how to use the program
@@ -122,4 +125,31 @@ Commit everything to GitHub. Reiterating the deliverables, they are:
 Review the instructions in the deliverables’ respective sections to see what goes in them.
 
 ## Specific Point Allocations
-Work in progress—stay tuned!
+This assignment is scored according to outcomes _1a_–_1c_, _3a_–_3d_, and _4a_–_4f_ in the [syllabus](https://dondi.lmu.build/fall2020/cmsi486/cmsi486-fall2020-syllabus.pdf). For this particular assignment, graded categories are as follows:
+
+| Category | Points | Outcomes |
+| -------- | -----: | -------- |
+| _netflix-practice.md_ correctly implements the requested operations | 4 points each, 28 points total | _1a_–_1c_, _3a_–_3c_, _4a_–_4d_ |
+| _about.md_ | 5 points total | _1a_, _1b_, _4c_ |
+| • Includes link to the dataset’s files | 1 point | |
+| • Describes the dataset and possible applications well | 4 points | |
+| _.gitignore_ correctly prevents accidental commits of dataset files | deduction only, if missed | _4a_ |
+| _.schema.pdf_ | 5 points | _1b_, _4c_ |
+| _.schema.sql_ | 5 points | _1b_, _1c_, _3c_, _4a_ |
+| Loader programs | 10 points | _3b_, _3c_, _4a_–_4d_ |
+| _queries.md_ correctly implements the requested operations | 4 points each, 20 points total | _1b_, _1c_, _3c_, _4a_–_4d_ |
+| DAL module | 21 points total | _3c_, _3d_, _4a_–_4d_ |
+| • Correct, well-separated configuration and setup | 7 points | |
+| • Domain-appropriate retrieval function | 7 points | |
+| • Domain-approprate “CUD” function | 7 points | |
+| • Mix of implementation styles | up to 3 extra | 😎 |
+| DAL-calling programs | 3 points each, 6 points total | _3d_, _4a_–_4d_ |
+| Hard-to-maintain or error-prone code | deduction only | _4b_ |
+| Hard-to-read code | deduction only | _4c_ |
+| Version control | deduction only | _4e_ |
+| Punctuality | deduction only | _4f_ |
+| **Total** | **100** |
+
+Where applicable, we reinterpret outcomes _4b_ and _4c_ in this assignment to represent the clarity, polish, and effectiveness of how you document your dataset, database, and its features, whether in written descriptions, the database diagram, or the DAL code.
+
+Note that inability to compile and run any code to begin with will negatively affect other criteria, because if we can’t run your code (or commands), we can’t evaluate related remaining items completely.
