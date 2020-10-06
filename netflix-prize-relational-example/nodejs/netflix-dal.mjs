@@ -93,7 +93,7 @@ const Rating = db.define(
   },
   {
     freezeTableName: true,
-    timestampes: false
+    timestamps: false
   }
 )
 
