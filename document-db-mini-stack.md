@@ -1,6 +1,6 @@
 **CMSI 486** Introduction to Database Systems, Fall 2020
 
-# Assignment 1102
+# Assignment 1109
 For this assignment, we shift our attention to one of the most prominent alternatives to the relational model—a document-centric database. You may choose between two such systems for this assignment: [MongoDB](https://www.mongodb.com) or [ElasticSearch](https://www.elastic.co/elasticsearch/).
 
 As mentioned previously, this assignment has a similar structure to all of the mini-stack assignments. You are also to stay with the same group and dataset.
@@ -37,7 +37,7 @@ With that background in mind, implement the queries listed below, providing the 
 * Provide the MongoDB or ElasticSearch query that yields those results
 * Include a screenshot of this query being issued in the corresponding direct-database access utility (_mongo_, _curl_, Postman) alongside the first few results
 
-**Precision is the thing:** Make sure that your queries provide _exactly_ the information requested. For example, if the request is for “the number of reviews” that meet a certain condition, don’t provide a query that lists the reviews and requires the user to look at how many reviews were returned; _the query itself_ must provide the number directly. Similarly, for queries that ask for the “highest” or “lowest” values of something, don’t provide a query that lists multiple results, expecting the user to look for the desired result on their own—again, the query must return _precisely_ the items that contain the requested values.
+**Precision is the thing:** Due to the way document-centric databases work, it won’t always be possible to enforce the same level of precision that we see in other types of databases—but we can get close enough. Make a good-faith effort at eliminating extraneous information. If the request is for “the number of reviews” that meet a certain condition, don’t provide a query that lists the reviews and requires the user to look at how many reviews were returned; _the result itself_ must provide the number directly. Similarly, for queries that ask for the “highest” or “lowest” values of something, don’t make the user to look for the desired result manually—again, the query clearly identify the requested values.
 
 1. _Movies filtered by title and/or year_: A query that retrieves the _ID_, _year_, and _title_ of movies that fit criteria of your choosing (e.g., movies with certain titles or title patterns, movies released on one or more given years, etc.), sorted ascending by _title_
 2. _Number of movies released per year_: A query that takes movie criteria of your choosing and returns a collection consisting of _year_ and _count_ where _count_ is the number of movies that meet these criteria which were released on that _year_, sorted ascending by _year_
@@ -58,8 +58,8 @@ What doesn’t change from before is the need to populate your database with you
 2. Put that design in writing by providing a diagram of that schema—notation is less rigid here again because of the way document-centric databases operate:
     * For MongoDB, state the chosen name for your database and the collections it will contain
     * For ElasticSearch, state the names of the indices that you will use
-    * In both cases, describe the documents that will go into these collections or indices by showing their JSON structure—what are their property names? What types do they have? Are there any sub-objects or arrays?
-    * Submit this as _schema.pdf_
+    * In both cases, describe the documents that will go into these collections or indices by _showing their JSON structure_—what are their property names? What types do they have? Are there any sub-objects or arrays?
+    * Submit this as _schema.pdf_ or _schema.md_, as appropriate
 3. For ElasticSearch, you may need to supply _mappings_ objects (one per index that requires _mappings_): if so, supply them as _**(index-name)**-mappings.json_ (meant for direct `PUT` via _curl_ or Postman to the intended index)
 4. Write one or more programs that will populate the target database with the dataset: submit these as one or more _loader_ source files
 
@@ -72,8 +72,8 @@ Show off your ability to derive information from your database by writing the fo
 Submit these in a Markdown file called _queries.md_. All queries should be _domain-appropriate_—i.e., they should make sense for an application that is trying to do real-world work with your adopted dataset:
 1. A query that selects a subset of a particular entity in your dataset
 2. Another such query, with a specific sort order
-3. _Either_ query that combines information from more than one collection _or_ a query that iterates through nested collections or sub-objects
-4. An _aggregate_ query that provides counts for certain groups in your dataset
+3. _Either_ a sequence of queries that combines information from more than one collection (this may require some pseudocode that connects one collection to another) _or_ a query that iterates through nested collections or sub-objects
+4. An _aggregate_ query that provides counts or other aggregate computations for certain groups in your dataset
 5. A _ranking_ query that provides the “top” or “bottom” _n_ documents based on some metric
 
 If inspiration strikes you, don’t stop at just these five (5) queries. The more practice you get with your chosen system’s query language, the better. The five that are given are only meant to provide the base coverage for this assignment.
@@ -106,7 +106,7 @@ The same notes and suggestions remain from before:
 Commit everything to GitHub. Reiterating the deliverables, they are:
 - [_netflix-practice.md_](#docflix-netflix-praticemd-document-centric-database-edition)
 - [_.gitignore_](#just-gitignore-it) (revised from what is already provided)
-- [_schema.pdf_](#we-will-we-will-doc-you-schema-and-loader-files) and [_**(index-name)**-mappings.json_](#we-will-we-will-doc-you-schema-and-loader-files) (if applicable)
+- [_schema.pdf_/_schema.md_](#we-will-we-will-doc-you-schema-and-loader-files) and [_**(index-name)**-mappings.json_](#we-will-we-will-doc-you-schema-and-loader-files) (if applicable)
 - One or more [loader programs](#we-will-we-will-doc-you-schema-and-loader-files)
 - [_queries.md_](#whats-up-doc-queriesmd)
 - [Data access layer (DAL) module](#dal-doc-ahedron-dal)
@@ -121,7 +121,7 @@ This assignment is scored according to outcomes _1a_, _1d_, _3a_–_3d_, and _4a
 | -------- | -----: | -------- |
 | _netflix-practice.md_ correctly implements the requested operations | 4 points each, 28 points total | _1a_, _1d_, _3a_–_3c_, _4a_–_4d_ |
 | _.gitignore_ correctly prevents accidental commits of dataset files | deduction only, if missed | _4a_ |
-| _.schema.pdf_ and _**(index-name)**-mappings.json_ (if applicable) | 5 points | _1d_, _4c_ |
+| _.schema.pdf_/_schema.md_ and _**(index-name)**-mappings.json_ (if applicable) | 5 points | _1d_, _4c_ |
 | Loader program(s) | 15 points | _3b_, _3c_, _4a_–_4d_ |
 | _queries.md_ correctly implements the requested operations | 5 points each, 25 points total | _1d_, _3c_, _4a_–_4d_ |
 | DAL module | 21 points total | _3c_, _3d_, _4a_–_4d_ |
