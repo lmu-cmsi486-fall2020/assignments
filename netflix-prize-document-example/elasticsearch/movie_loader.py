@@ -3,7 +3,7 @@ import json
 
 """
 This program generates direct JSON literals from the source Netflix Prize movie file.
-This allows us to pass the data directly into the ElasticSearch `_bulk` endpoint.
+This allows us to pass the data directly into the Elasticsearch `_bulk` endpoint.
 """
 
 # For simplicity, we assume that the program runs where the files are located.
@@ -15,7 +15,8 @@ with open(MOVIE_SOURCE, 'r+', encoding='iso-8859-1') as f:
         year = None if row[1] == 'NULL' else int(row[1])
         title = ', '.join(row[2:])
 
-        # Note the hardcoded empty `ratings` array—we’ll fill those in later.
+        # For data loading, we’ll “inherit” the original IDs. But newer movies
+        # will have a distinctly different look.
         print(json.dumps({
             'index': {
                 '_id': id
@@ -23,7 +24,6 @@ with open(MOVIE_SOURCE, 'r+', encoding='iso-8859-1') as f:
         }))
 
         print(json.dumps({
-            'id': id,
             'year': year,
             'title': title,
         }, ensure_ascii=False))  # ensure_ascii=False forces UTF-8 encoding.
