@@ -15,7 +15,7 @@ const moviesCollection = () => db.db(DB_NAME).collection(MOVIE_COLLECTION)
 const arrayFromCursor = async cursor => {
   // cursor.forEach is asynchronous!
   const result = []
-  await cursor.forEach(result.push)
+  await cursor.forEach(item => result.push(item))
   return result
 }
 
@@ -45,7 +45,7 @@ const searchMoviesByTitle = async (title, limit = 100) => {
       })
       .limit(limit)
 
-    return arrayFromCursor(cursor)
+    return await arrayFromCursor(cursor)
   } finally {
     await db.close()
   }
@@ -77,28 +77,40 @@ const getRatingsByViewer = async (viewerId, limit = 100) => {
       { $limit: limit }
     ])
 
-    return arrayFromCursor(cursor)
+    return await arrayFromCursor(cursor)
   } finally {
     await db.close()
   }
 }
 
+const objectIdOrNull = idString => {
+  try {
+    return new ObjectID(movieId)
+  } catch (error) {
+    return null
+  }
+}
+
 const getAverageRatingOfMovie = async movieId => {
+  // Because newly-added movies won’t have Netflix’s legacy ID, we need to look for both Netflix
+  // legacy ID matches and native MongoDB object ID matches.
+  //
+  // Check if we got something that could be a MongoDB object ID value. This is semi-lazy: we try
+  // to instantiate an ObjectID with it and return null if it fails.
+  const movieObjectId = objectIdOrNull(movieId)
   try {
     await db.connect()
     const movies = moviesCollection()
 
+    const $or = [{ id: movieId }]
+    if (movieObjectId) {
+      $or.push({ _id: movieObjectId })
+    }
+
     // Note how MongoDB’s affinity toward JSON/JavaScript means that a query in the _mongo_ utility
     // translates to code with virtually no changes.
     const cursor = await movies.aggregate([
-      {
-        $match: {
-          $or: [
-            { id: movieId }, // Because newly-added movies won’t have Netflix’s legacy ID,
-            { _id: new ObjectID(movieId) } // we need to look for both.
-          ]
-        }
-      },
+      { $match: { $or } },
       { $unwind: '$ratings' }, // Pull out the ratings objects.
       {
         $group: {
@@ -112,7 +124,7 @@ const getAverageRatingOfMovie = async movieId => {
       }
     ])
 
-    const result = arrayFromCursor(cursor)
+    const result = await arrayFromCursor(cursor)
     return result[0]?.average
   } finally {
     await db.close()
