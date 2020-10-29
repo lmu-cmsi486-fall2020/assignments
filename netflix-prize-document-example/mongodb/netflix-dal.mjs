@@ -85,7 +85,7 @@ const getRatingsByViewer = async (viewerId, limit = 100) => {
 
 const objectIdOrNull = idString => {
   try {
-    return new ObjectID(movieId)
+    return new ObjectID(idString)
   } catch (error) {
     return null
   }
