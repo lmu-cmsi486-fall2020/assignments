@@ -83,6 +83,8 @@ const getRatingsByViewer = async (viewerId, limit = 100) => {
   }
 }
 
+// Check if we got something that could be a MongoDB object ID value. This is semi-lazy: we try
+// to instantiate an ObjectID with it and return null if it fails.
 const objectIdOrNull = idString => {
   try {
     return new ObjectID(idString)
@@ -94,9 +96,6 @@ const objectIdOrNull = idString => {
 const getAverageRatingOfMovie = async movieId => {
   // Because newly-added movies won’t have Netflix’s legacy ID, we need to look for both Netflix
   // legacy ID matches and native MongoDB object ID matches.
-  //
-  // Check if we got something that could be a MongoDB object ID value. This is semi-lazy: we try
-  // to instantiate an ObjectID with it and return null if it fails.
   const movieObjectId = objectIdOrNull(movieId)
   try {
     await db.connect()
