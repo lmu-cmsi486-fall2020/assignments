@@ -14,4 +14,4 @@ if len(result) == 0:
     exit(0)
 
 for movie in result:
-    print(f"{movie['id']} “{movie['title']}” ({movie['year']})")
+    print(f"{movie.meta['id']} “{movie['title']}” ({movie['year']})")
