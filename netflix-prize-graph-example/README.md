@@ -30,7 +30,7 @@ A version of this diagram with additional annotations is available as [schema.pd
 To help you with your own logical schema, Neo4j provides [a detailed modeling guide](https://neo4j.com/developer/data-modeling/), including [specific suggested conversions when coming from a relational model](https://neo4j.com/developer/relational-to-graph-modeling/). Use these pages to help you make design decisions about your own dataset’s schema as well as for examples on appropriate notation.
 
 ## Feed the ’Neo
-Similarly to document-centric databases, graph-centric databases do not need a schema up-front: you can start creating nodes and relationships on the spot. Unlike the document-centric databases that we’ve seen and more like relational databases, Neo4j has an actual query language called Cypher which, like SQL, has both DML (data manipulation) and DDL (data definition) capabilities.
+Similarly to document-centric databases, graph databases do not need a schema up-front: you can start creating nodes and relationships on the spot. Unlike the document-centric databases that we’ve seen and more like relational databases, Neo4j has an actual query language called Cypher which, like SQL, has both DML (data manipulation) and DDL (data definition) capabilities.
 
 In Node4j, instantiating ad hoc nodes and edges involves the Cypher [CREATE](https://neo4j.com/developer/cypher/updating/#_inserting_data_with_cypher) statement. If you create nodes or edges with new labels, that’s equivalent to defining a new type of node or relationship (since the label acts very much like a “type”). Deleting a “type” is pretty much deleting all nodes or edges with a given label, via Cypher’s [DELETE](https://neo4j.com/developer/cypher/updating/#cypher-delete) statement.
 
@@ -329,4 +329,32 @@ Although `MATCH`, `WHERE`, and `RETURN` (with the occasional `ORDER BY` if you w
 And as a bonus, Neo4j can also [`EXPLAIN` or `PROFILE`](https://neo4j.com/docs/cypher-manual/4.1/query-tuning/#how-do-i-profile-a-query) a query—worth running on these samples or any others to take a peek into how Neo4j gets all those wonderful graphs.
 
 ## Node DAL-ium Edge-osa
-(work in progress)
+In the DAL department, examples are provided here in [JavaScript](./nodejs) and [Python 3](./python). Neo4j provides official “drivers” for these languages, as well as [a host of others](https://neo4j.com/developer/language-guides/). As with the other mini-stacks, you’re free to pick any language in your comfort zone that has an official Node4j library.
+
+### Common Characteristics
+Neo4j’s official libraries/drivers are semantically very similar across all supported languages. They share the following common elements:
+- A unified entry point, typically called `driver`, which takes a database URL and user credentials to provide an entry point to the database (and indeed, this is a common characteristic of pretty much any database library, regardless of type)
+- Instantiated `driver`s then provide `session` objects through which Cypher queries can be `run`
+- The official libraries follow a just-slightly-modified “pass me a Cypher string” pattern—the `session` object’s `run` function takes a Cypher string within which `$`-prefixed symbols represent variables that can be substituted, thus providing some protection against code-injection attacks
+- Substitution mappings are provided depending on a language’s features: in Python, they are appended to the `run` function’s arguments as named parameters; in JavaScript, they are passed as an object after the Cypher string
+
+| Python | JavaScript |
+| --- | --- |
+| `session.run('MATCH (n:Node {name: $value})', value=<value>)` | `session.run('MATCH (n:Node {name: $value})', { value: <value> })` |
+
+- Query results are provided as a fairly uniform _Result_ object which contains metadata about the query and, most importantly, a _Record_ array which represents the actual return value: each _Record_ includes one entry for every variable/expression returned by the Cypher query, and within each such entry are identifiers, start/end identifiers (for edges), and properties
+- As with the `run` function, this common structure is adapted to the specific features of the language—for example, in Python, one accesses records by iterating through the _Result_ object; in JavaScript, `records` is an array property of the _Result_
+
+### Higher-Level Abstractions
+You would be right to observe that the official libraries appear to be pretty baseline and low-level—akin to embedded SQL-style libraries with relational databases. Libraries with higher-level abstractions are available (model objects, custom types, etc.) but the only one that is official is the [Java OGM library](https://neo4j.com/developer/neo4j-ogm/) (“OGM” stands for “object-graph mapping”—a play on “object-relational mapping”). You’re free to explore this one if you like; for other languages, Neo4j relies on the developer community for this type of support. Neo4j lists these libraries alongside their official ones.
+
+We have chosen not to use these libraries in the class examples because the intent of the course is to have you walk away with a general, overall perspective on databases. But feel free to go deeper on your own with any of the libraries here if you wish, particularly if you miss that taste of ORM from back in the relational database assignment.
+
+### Configuration Data
+Like other database systems, Neo4j’s library primarily needs a database URL to get its work done. For consistency, we retain the `DB_URL` environment variable name in our sample DAL code.
+
+Unlike other database systems though, Neo4j does not support including user credentials in the URL—i.e., you can’t supply a URL like `neo4j://username:password@localhost`. As you’ll see in the DAL samples, the username and password are passed in through a separate `driver` parameter.
+
+Because of this, the sample DALs support two other environment variables: `DB_USER` and `DB_PASSWORD`. For convenience, `DB_USER` only needs to be supplied if the database username isn’t `neo4j`. You _do_ need to supply `DB_PASSWORD` separately however—there is no default password. If you’re uncomfortable with providing your Neo4j password on the command line every time, you can set `DB_PASSWORD` using other environment variable mechanisms, such as through an initialization file or system settings. That’s how production environment variable settings are provided anyway.
+
+Execution specifics are provided in the READMEs of our respective DAL examples.
