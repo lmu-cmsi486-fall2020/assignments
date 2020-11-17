@@ -141,35 +141,36 @@ OK—let’s see how Cypher handles our sample case study queries. The main buil
 * List all columns for movies containing both `'and'` and `'of'` in their titles, sorted ascending by year then title:
 ```
 MATCH (m:Movie)
-WHERE m.title CONTAINS " and " AND m.title CONTAINS " or "
+WHERE m.title CONTAINS " and " AND m.title CONTAINS " of "
 RETURN m
 ORDER BY m.year, m.title
 ```
 
-**Queryer beware:** Right away we run into some unexpected behavior, because although we can certainly formulate and run what appears to be a valid Cypher query above, on my setup I actually get no results. There are definitely movies which meet these two `CONTAINS` predicates—we’ve seen them in the other databases—but for whatever reason, this particular combination returns nothing on my installation of Neo4j. Something comes back for `m.title CONTAINS " and "` by itself and also for `m.title CONTAINS " or "` by itself—and even removing a _space_ or two from those strings produces results—but once we have _exactly_ `m.title CONTAINS " and " AND m.title CONTAINS " or "`, nothing comes back 🤷🏽‍♂️
-
-And yet, _this_ structurally identical query—just with different string matches—returns results:
-```
-MATCH (m:Movie)
-WHERE m.title CONTAINS " Me " AND  m.title CONTAINS " My "
-RETURN m
-ORDER BY m.year, m.title
-```
-
-The text output of this query is:
+The text output of this query starts like this:
 ```
 ╒══════════════════════════════════════════════════════════════════════╕
 │"m"                                                                   │
 ╞══════════════════════════════════════════════════════════════════════╡
-│{"movieId":"11024","title":"For Me and My Gal","year":1942}           │
+│{"movieId":"3790","title":"Avant-Garde: Experimental Cinema of the 192│
+│0s and '30s","year":1921}                                             │
 ├──────────────────────────────────────────────────────────────────────┤
-│{"movieId":"6379","title":"Life with Judy Garland: Me and My Shadows",│
-│"year":2001}                                                          │
-└──────────────────────────────────────────────────────────────────────┘
+│{"movieId":"2449","title":"The Private Lives of Elizabeth and Essex","│
+│year":1939}                                                           │
+├──────────────────────────────────────────────────────────────────────┤
+│{"movieId":"12416","title":"Sherlock Holmes and the Voice of Terror","│
+│year":1942}                                                           │
+├──────────────────────────────────────────────────────────────────────┤
+│{"movieId":"7220","title":"Anna and the King of Siam","year":1946}    │
+├──────────────────────────────────────────────────────────────────────┤
+│{"movieId":"17715","title":"The Adventures of Ma and Pa Kettle: Vol. 1│
+│","year":1947}                                                        │
+├──────────────────────────────────────────────────────────────────────┤
+  ...
+  ...
 ```
 
 The graph output—not hugely useful but a hint of where this can go—looks like this:
-![Me and My in the Title](./images/me-and-my-in-title.png)
+![And and Of in the Title](./images/and-and-of-in-title.png)
 
 Note how a graph display effectively ignores the `ORDER BY` clause—“order” in that sense just doesn’t translate to a graph. But it _is_ respected in text or tabular renderings of the query results.
 
