@@ -134,8 +134,8 @@ This assignment is scored according to outcomes _1a_–_1c_, _3a_–_3d_, and _4
 | • Includes link to the dataset’s files | 1 point | |
 | • Describes the dataset and possible applications well | 4 points | |
 | _.gitignore_ correctly prevents accidental commits of dataset files | deduction only, if missed | _4a_ |
-| _.schema.pdf_ | 5 points | _1b_, _4c_ |
-| _.schema.sql_ | 5 points | _1b_, _1c_, _3c_, _4a_ |
+| _schema.pdf_ | 5 points | _1b_, _4c_ |
+| _schema.sql_ | 5 points | _1b_, _1c_, _3c_, _4a_ |
 | Loader programs | 10 points | _3b_, _3c_, _4a_–_4d_ |
 | _queries.md_ correctly implements the requested operations | 4 points each, 20 points total | _1b_, _1c_, _3c_, _4a_–_4d_ |
 | DAL module | 21 points total | _3c_, _3d_, _4a_–_4d_ |
