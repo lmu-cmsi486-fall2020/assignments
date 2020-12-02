@@ -43,7 +43,7 @@ Due to the specific strengths of and motivations for graph databases, we change 
 For each of these queries, find ways to “sanity-check” your work—are there ways to run other queries that will help you verify whether you are really getting the results you’ve requested? It’s useful to do this at first while you’re still getting the hang of Cypher.
 
 ### Just _.gitignore_ It
-Because this is your third go with the same dataset, we don’t need _about.md_ for this assignment. Just edit the `.gitignore` file again so that it makes your repository ignore your chosen dataset’s files.
+Because this is your third go with the same dataset, we don’t need _about.md_ for this assignment. Just edit the _.gitignore_ file again so that it makes your repository ignore your chosen dataset’s files.
 
 ### Rock the Graph-bah: Schema, Preprocessors, Headers, and Commentary
 What doesn’t change from before is the need to populate your database with your dataset:
