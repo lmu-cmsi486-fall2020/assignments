@@ -122,7 +122,7 @@ This assignment is scored according to outcomes _1a_, _1d_, _3a_–_3d_, and _4a
 | _netflix-practice.md_ correctly implements the requested operations | 4 points each, 28 points total | _1a_, _1d_, _3a_–_3c_, _4a_–_4d_ |
 | _.gitignore_ correctly prevents accidental commits of dataset files | deduction only, if missed | _4a_ |
 | _.schema.pdf_/_schema.md_ and _**(index-name)**-mappings.json_ (if applicable) | 5 points | _1d_, _4c_ |
-| Loader program(s) | 15 points | _3b_, _3c_, _4a_–_4d_ |
+| Loader program(s) | 15 points | _3a_, _3b_, _4a_–_4d_ |
 | _queries.md_ correctly implements the requested operations | 5 points each, 25 points total | _1d_, _3c_, _4a_–_4d_ |
 | DAL module | 21 points total | _3c_, _3d_, _4a_–_4d_ |
 | • Correct, well-separated configuration and setup | 7 points | |
