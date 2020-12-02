@@ -61,7 +61,7 @@ This assignment marks a moment of “commitment:” you will settle into groups 
 * What applications would find the dataset useful
 * What kinds of questions might such applications ask of this dataset
 
-As with prior assignments, make sure that _about.md_ also has links to the actual dataset, for anyone who would like to download a copy for themselves. Also as before, whatever you do, do _not_ commit the datasets to GitHub. Once again make sure to edit the `.gitignore` file so that it makes your repository ignore the files that comprise your chosen dataset.
+As with prior assignments, make sure that _about.md_ also has links to the actual dataset, for anyone who would like to download a copy for themselves. Also as before, whatever you do, do _not_ commit the datasets to GitHub. Once again make sure to edit the _.gitignore_ file so that it makes your repository ignore the files that comprise your chosen dataset.
 
 ### All About That ’Base (Draw Tables): Schema and Loader Files
 With your dataset chosen, it’s time to populate a relational database with it:
