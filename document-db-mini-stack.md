@@ -50,7 +50,7 @@ With that background in mind, implement the queries listed below, providing the 
 For each of these queries, find ways to “sanity-check” your work—are there ways to run other queries that will help you verify whether you are really getting the results you’ve requested? It’s useful to do this at first while you’re still getting the hang of your chosen system’s query language.
 
 ### Just _.gitignore_ It
-Because we’re on the same dataset as before, we don’t need _about.md_ for this assignment. Just edit the `.gitignore` file again so that it makes your repository ignore the files that comprise your chosen dataset.
+Because we’re on the same dataset as before, we don’t need _about.md_ for this assignment. Just edit the _.gitignore_ file again so that it makes your repository ignore the files that comprise your chosen dataset.
 
 ### We Will, We Will Doc You: Schema and Loader Files
 What doesn’t change from before is the need to populate your database with your dataset:
