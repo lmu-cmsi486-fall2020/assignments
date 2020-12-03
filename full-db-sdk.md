@@ -107,7 +107,7 @@ The user-readable search function in the CRUD suite is one such function. This a
 
 Your envisioned application may require more of these. Specify and implement whatever you feel is needed, again supplying a comment block that describes them completely: natural language statement, specifications of function parameters and return values, and a copy-pasteable example of the query (or queries), with specific values already provided.
 
-### “With the Right Leverage and the Proper _Application Proof-of-Concept_, the Door Will Lift Free” (Orlando Bloom as Will Turner, `1905` _Priates of the Caribbean: The Curse of the Black Pearl_ 2003)
+### “With the Right Leverage and the Proper _Application Proof-of-Concept_, the Door Will Lift Free” (Orlando Bloom as Will Turner, `1905` _Pirates of the Caribbean: The Curse of the Black Pearl_ 2003)
 Your DAL won’t run itself—it needs end-user programs to shine. Provide such programs to demonstrate a “proof-of-concept” for what your envisioned application can do with this DAL. This proof-of-concept can take any of these forms:
 * Command-line suite: Collection of programs that, together, show off the functions in your DAL
 * Integrated text-based program: A single executable program which can run all of these functions (e.g., via a menu/keyboard interface)
@@ -165,7 +165,7 @@ Commit everything to GitHub. Reiterating the deliverables, they are:
     * Evidence of impact (before-after query explanation; before-after query benchmarks) as part of [_setup.md_](#you-always-do-drag-me-into-your-crazy-schemas-preprocessors-and-loaders-vivian-vance-as-ethel-mertz-1432576982618821017i-love-lucy-19511957)
 - [_setup.md_](#you-always-do-drag-me-into-your-crazy-schemas-preprocessors-and-loaders-vivian-vance-as-ethel-mertz-1432576982618821017i-love-lucy-19511957)
 - [DAL code](#id-rather-take-my-chances-as-a-supernaturally-possessed-dal-brad-dourif-as-chucky-12997-seed-of-chucky-2004)
-- [Application proof-of-concept](#with-the-right-leverage-and-the-proper-application-proof-of-concept-the-door-will-lift-free-orlando-bloom-as-will-turner-1905-priates-of-the-caribbean-the-curse-of-the-black-pearl-2003)
+- [Application proof-of-concept](#with-the-right-leverage-and-the-proper-application-proof-of-concept-the-door-will-lift-free-orlando-bloom-as-will-turner-1905-pirates-of-the-caribbean-the-curse-of-the-black-pearl-2003)
 - [Statement of work retrospective](#for-submission-statement-of-work-retrospective)
     * _group-retrospective.md_
     * Individual email to me
