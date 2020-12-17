@@ -127,11 +127,11 @@ The first two are new/different from before:
 - Once more, do _not_ commit dataset files to the repository—they may be too large for that. Provide links instead. Edit _.gitignore_ to avoid accidental commits.
 - Not everyone’s computer might have enough storage or other capacity—AWS is an option but watch your credits; or, designate someone as the “host” for doing work and find ways to collaborate over a screenshare and (friendly) remote control of a classmate’s screen.
 
-## For Submission: Statement of Work Retrospective
-> “As for you, here tomorrow, write a _statement of work retrospective_” (Subtitled character in Bruce Lee film _Xi lu xiang_/_The Kid_ 1950)
+## For Submission: Group Retrospective
+> “As for you, here tomorrow, write a _group retrospective_” (Subtitled character in Bruce Lee film _Xi lu xiang_/_The Kid_ 1950)
 
 * Reflect on your overall group database stack work for the semester in a _group-retrospective.md_ document. Describe what each group member worked on through all of the database mini-stack assignments as well as this last full SDK
-* Write an individual email directly to me stating anything that you prefer not to include in the shared _statement-of-work.md_—even if you have nothing to add, _write to me anyway_, so I know that you didn’t miss a chance to speak up. So that I don’t miss it, use the subject line “CMSI 486 _group name_ individual statement of work”
+* Write an individual email directly to me stating anything that you prefer not to include in the shared _group-retrospective.md_—even if you have nothing to add, _write to me anyway_, so I know that you didn’t miss a chance to speak up. So that I don’t miss it, use the subject line “CMSI 486 _group name_ individual retrospective”
 
 The points for this deliverable pertain to _submission only_ and not its content. If warranted, individual adjustments to final grades may be made based on the information provided in these items.
 
@@ -166,7 +166,7 @@ Commit everything to GitHub. Reiterating the deliverables, they are:
 - [_setup.md_](#you-always-do-drag-me-into-your-crazy-schemas-preprocessors-and-loaders-vivian-vance-as-ethel-mertz-1432576982618821017i-love-lucy-19511957)
 - [DAL code](#id-rather-take-my-chances-as-a-supernaturally-possessed-dal-brad-dourif-as-chucky-12997-seed-of-chucky-2004)
 - [Application proof-of-concept](#with-the-right-leverage-and-the-proper-application-proof-of-concept-the-door-will-lift-free-orlando-bloom-as-will-turner-1905-pirates-of-the-caribbean-the-curse-of-the-black-pearl-2003)
-- [Statement of work retrospective](#for-submission-statement-of-work-retrospective)
+- [Group retrospective](#for-submission-group-retrospective)
     * _group-retrospective.md_
     * Individual email to me
 - [Tutorial video](#for-submission-tutorial-video)
@@ -195,7 +195,7 @@ This assignment is scored according to outcomes _1a_, _1b_, _1c_ or _1d_, _2a_, 
 | • Full-cycle CRUD with transaction implementation | 25 points | |
 | • Helper functions | 15 points | |
 | Application proof-of-concept is functional and usable | 20 points | _3d_, _4a_–_4d_|
-| Statement of work retrospective has the requested information | 10 points total | _4c_ |
+| Group retrospective has the requested information | 10 points total | _4c_ |
 | • _group-retrospective.md_ | 5 points | |
 | • Individual email | 5 points | |
 | Tutorial video has the requested content | 30 points | _2a_ |
